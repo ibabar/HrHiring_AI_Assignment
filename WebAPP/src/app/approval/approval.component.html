@@ -1,0 +1,61 @@
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+
+            <div class="d-flex flex-row-reverse bg-secondary">
+              <a href="#" (click)="logOut()" class="btn btn-danger btn-icon-split">
+                <span class="icon text-white-50">
+                  <i class="fas fa-arrow-right"></i>
+                </span>
+                <span class="text">Log Out</span>
+              </a>
+            </div>
+            <h4 class="card-title">Grant Approval</h4>
+            <p class="card-description">
+              Authorize personals ONLY
+            </p>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile Number</th>
+                    <th>Vacancy</th>
+                    <th>HR Manager Approval</th>
+                    <th>HR Director Approval</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let vac of applicantList; let i = index">
+                    <td>{{vac.name}}</td>
+                    <td>{{vac.email}}</td>
+                    <td>{{vac.mobileNumber}}</td>
+                    <td>{{vac.vacancyName}}</td>
+                    <td>
+                      <label *ngIf="!vac.approvalOne" class="badge badge-danger">Pending</label>
+                      <label *ngIf="vac.approvalOne" class="badge badge-success">Approved</label>
+                      <button *ngIf="showApprovalOneButton && !vac.approvalOne" (click)="Approve(vac)" type="button"
+                        class="btn btn-link">Approve</button>
+                    </td>
+                    <td>
+                      <label *ngIf="!vac.approvalTwo" class="badge badge-danger">Pending</label>
+                      <label *ngIf="vac.approvalTwo" class="badge badge-success">Approved</label>
+                      <button *ngIf="showApprovalTwoButton && !vac.approvalTwo" (click)="Approve(vac)" type="button"
+                        class="btn btn-link">Approve</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex flex-row-reverse bg-secondary">
+                <a href="#" (click)="logOut()" class="btn btn-danger btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                    <span class="text">Log Out</span>
+                </a>
+            </div>
+            <h4 class="card-title">Create New Vacancies</h4>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body" [formGroup]='saveVacancy'>
+                            <div class="form-group">
+                                <label for="name">Position Name</label>
+                                <input formControlName='OpenPosition' type="text" class="form-control" name="name"
+                                    id="name" aria-describedby="emailHelp" placeholder="Postion Name">
+                                <div *ngIf="submitted && f.OpenPosition.errors?.required"
+                                    class="invalid-feedback d-block">
+                                    * Required
+                                </div>
+                            </div>
+
+                            <button type="submit" (click)="SaveVacancy()" class="btn btn-primary mt-2">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body" style="max-height: 300px ; overflow-y: scroll;">
+                            <h5>Total Positions <span class="badge bg-secondary">{{vacancyList.length}}</span></h5>
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Vancacy</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let vac of vacancyList; let i = index">
+                                        <th scope="row">{{i+1}}</th>
+                                        <td>{{vac.openPosition}}</td>
+                                        <td>
+                                            <label *ngIf="!vac.approvedCandidate" class="badge badge-danger">Approval
+                                                Pending</label>
+                                            <label *ngIf="vac.approvedCandidate" class="badge badge-success">Candidate
+                                                Selected</label>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
